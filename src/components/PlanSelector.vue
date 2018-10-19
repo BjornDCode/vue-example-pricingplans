@@ -143,27 +143,18 @@
             </div>
         </div>
 
-        <transition name="slide">
-            <div class="fixed pin-b w-full bg-blue py-4" v-show="selectedPlan.length">
-                <div class="container mx-auto flex justify-between items-center">
-                    <div>
-                        <span class="text-grey-lighter text-sm mr-4">Selected plan:</span>
-                        <span class="text-white font-bold text-2xl mr-2">
-                            {{ selectedPlan | capitalise }}
-                        </span>
-                        <span class="text-grey-lighter text-sm">
-                            ({{ interval | capitalise }})
-                        </span>
-                    </div>
-                    <a href="#" class="block no-underline bg-white text-black font-xs font-bold tracking-wide uppercase hover:bg-grey-lightest py-3 px-6">Continue</a>
-                </div>
-            </div>
-        </transition>
+        <status-bar :selectedPlan="selectedPlan" :interval="interval"></status-bar>
     </div>
 </template>
 
 <script>
+    import StatusBar from './StatusBar'
+
     export default {
+        components: {
+            StatusBar
+        },
+
         data() {
             return {
                 selectedPlan: '',
@@ -195,13 +186,3 @@
         }
     }
 </script>
-
-<style>
-    .slide-enter-active, .slide-leave-active {
-        transition: all 300ms;
-    }
-
-    .slide-enter, .slide-leave-to {
-        transform: translateY(100%);
-    }
-</style>
