@@ -1,21 +1,6 @@
 <template>
     <div class="min-h-screen pt-16 bg-grey-lightest">
-        <div class="w-64 bg-white rounded overflow-hidden flex flex-wrap mx-auto">
-            <button 
-                class="font-xs font-bold tracking-wide uppercase w-1/2 py-2 focus:outline-none"
-                :class="[interval === 'monthly' ? 'text-white bg-blue' : 'text-black']"
-                @click="selectInterval('monthly')"
-            >
-                Monthly
-            </button>
-            <button 
-                class="font-xs font-bold tracking-wide uppercase w-1/2 py-2 focus:outline-none"
-                :class="[interval === 'yearly' ? 'text-white bg-blue' : 'text-black']"
-                @click="selectInterval('yearly')"
-            >
-                Yearly
-            </button>
-        </div>
+        <interval-selector v-model="interval"></interval-selector>
         
         <div class="container mx-auto flex pt-16">
             <plan
@@ -66,11 +51,13 @@
 </template>
 
 <script>
+    import IntervalSelector from './IntervalSelector'
     import StatusBar from './StatusBar'
     import Plan from './Plan'
 
     export default {
         components: {
+            IntervalSelector,
             StatusBar,
             Plan
         },
@@ -79,12 +66,6 @@
             return {
                 selectedPlan: '',
                 interval: 'monthly'
-            }
-        },
-
-        methods: {
-            selectInterval(interval) {
-                this.interval = interval
             }
         }
     }
