@@ -1,5 +1,5 @@
 <template>
-    <transition name="slide">
+    <transition-slide-up :duration="300">
         <div class="fixed pin-b w-full bg-blue py-4" v-show="selectedPlan.length">
             <div class="container mx-auto flex justify-between items-center">
                 <div>
@@ -14,7 +14,7 @@
                 <a href="#" class="block no-underline bg-white text-black font-xs font-bold tracking-wide uppercase hover:bg-grey-lightest py-3 px-6">Continue</a>
             </div>
         </div>
-    </transition>
+    </transition-slide-up>
 </template>
 
 <script>
@@ -31,14 +31,4 @@
         }
     }
 </script>
-
-<style>
-    .slide-enter-active, .slide-leave-active {
-        transition: all 300ms;
-    }
-
-    .slide-enter, .slide-leave-to {
-        transform: translateY(100%);
-    }
-</style>
 
